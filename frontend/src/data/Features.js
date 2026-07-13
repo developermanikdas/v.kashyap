@@ -5,10 +5,10 @@ import {
   Lock,
 } from "lucide-react";
 
-import quoteImg from "../assets/images/quote.png";
-import imageImg from "../assets/images/image.png";
-import storyImg from "../assets/images/story.png";
-import secretImg from "../assets/images/secret.png";
+import quoteImg from "../assets/images/quote.webp";
+import imageImg from "../assets/images/image.webp";
+import storyImg from "../assets/images/story.webp";
+import secretImg from "../assets/images/secret.webp";
 
 export const features = [
   {
