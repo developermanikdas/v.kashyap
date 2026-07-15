@@ -10,6 +10,7 @@ import QuestionHeader from "../../components/message/questions/QuestionHeader";
 import QuestionHelp from "../../components/message/questions/QuestionHelp";
 import QuestionFooter from "../../components/message/questions/QuestionFooter";
 import Review from "../../components/message/questions/Review";
+import { finishDraft } from "../../services/draft.service";
 
 const QuestionPage = () => {
   const { type } = useParams();

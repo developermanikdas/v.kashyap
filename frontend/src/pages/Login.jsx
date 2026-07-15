@@ -2,9 +2,11 @@ import { User, Lock, HeartHandshake } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../services/auth.service.js";
+import { useAuth } from "../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [loading, setLoading] = useState(false);
 
@@ -30,11 +32,7 @@ const Login = () => {
 
       console.log(data);
 
-      // Save token
-      localStorage.setItem("token", data.token);
-
-      // Save user
-      localStorage.setItem("user", JSON.stringify(data.user));
+      login(data.token, data.user);
 
       navigate("/");
     } catch (error) {
