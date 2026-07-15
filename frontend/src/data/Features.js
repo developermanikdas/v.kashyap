@@ -41,6 +41,6 @@ export const features = [
     subtitle: "A surprise awaits you.",
     icon: Lock,
     image: secretImg,
-    path: "/secret-message"
+    path: "/message"
   },
 ];
