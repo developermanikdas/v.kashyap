@@ -1,7 +1,7 @@
 import MessageCard from "./MessageCard";
 import { messageSections } from "../../data/messageSections";
 
-const ShowMessageCards = () => {
+const ShowMessageCards = ({ onCardClick }) => {
   return (
     <section
       className="
@@ -27,6 +27,8 @@ const ShowMessageCards = () => {
           icon={section.icon}
           color={section.color}
           path={section.path}
+          status={section.status}
+          onClick={() => onCardClick(section.id)}
         />
       ))}
     </section>

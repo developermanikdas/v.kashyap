@@ -1,127 +1,116 @@
-import { CheckCircle2, Circle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 const MessageCard = ({
   step,
   title,
-  subtitle,
+ subtitle,
   icon: Icon,
-  color,
   path,
+
+  status = "not-started",
+
   completed = 0,
   total = 6,
 }) => {
   const navigate = useNavigate();
 
-  const finished = completed === total;
+  const statusColor =
+    status === "completed"
+      ? "bg-emerald-500"
+      : status === "in-progress"
+      ? "bg-amber-500"
+      : "bg-rose-500";
+
+  const statusText =
+    status === "completed"
+      ? "Completed"
+      : status === "in-progress"
+      ? "In Progress"
+      : "Not Started";
+
+  const statusTextColor =
+    status === "completed"
+      ? "text-emerald-600"
+      : status === "in-progress"
+      ? "text-amber-600"
+      : "text-rose-600";
 
   return (
     <button
       onClick={() => navigate(path)}
       className="
-      group
-      relative
+        group
+        relative
 
-      w-full
-      min-h-[280px]
+        w-full
+        min-h-[290px]
 
-      overflow-hidden
+        overflow-hidden
 
-      rounded-[34px]
+        rounded-[34px]
 
-      border
-      border-white/70
+        border
+        border-neutral-200
 
-      bg-gradient-to-br
-      backdrop-blur-3xl
+        bg-white
 
-      shadow-[0_20px_70px_rgba(120,120,120,.08)]
+        p-8
 
-      transition-all
-      duration-500
+        text-left
 
-      hover:-translate-y-1
-      hover:shadow-[0_25px_80px_rgba(120,120,120,.12)]
+        shadow-[0_20px_60px_rgba(0,0,0,.05)]
+
+        transition-all
+        duration-300
+
+        hover:-translate-y-1
+        hover:border-neutral-300
+        hover:shadow-[0_28px_80px_rgba(0,0,0,.08)]
       "
     >
-      {/* Background Gradient */}
-
-      <div
-        className={`
-        absolute
-        inset-0
-
-        bg-gradient-to-br
-
-        ${color}
-        `}
-      />
-
-      {/* Top Glass Highlight */}
-
-      <div className="absolute left-0 top-0 h-px w-full bg-white/80" />
-
-      {/* Glow */}
-
-      <div
-        className="
-        absolute
-        -right-10
-        -top-10
-
-        h-44
-        w-44
-
-        rounded-full
-
-        bg-white/40
-
-        blur-3xl
-        "
-      />
-
-      {/* Huge Step */}
+      {/* Huge Number */}
 
       <span
         className="
-        absolute
+          absolute
 
-        right-6
-        top-4
+          right-6
+          top-2
 
-        text-8xl
+          select-none
 
-        font-black
+          text-[120px]
+          font-black
 
-        text-white/25
+          leading-none
 
-        select-none
+          text-neutral-100
         "
       >
         {step}
       </span>
 
-      <div className="relative flex h-full flex-col justify-between p-7">
-
+      <div className="relative flex h-full flex-col justify-between">
         {/* Icon */}
 
         <div
           className="
-          flex
+            flex
 
-          h-14
-          w-14
+            h-14
+            w-14
 
-          items-center
-          justify-center
+            items-center
+            justify-center
 
-          rounded-2xl
+            rounded-2xl
 
-          bg-white/70
+            border
+            border-neutral-100
 
-          backdrop-blur-xl
+            bg-white
 
-          shadow-md
+            shadow-sm
           "
         >
           <Icon
@@ -130,22 +119,18 @@ const MessageCard = ({
           />
         </div>
 
-        {/* Title */}
+        {/* Content */}
 
-        <div>
-
+        <div className="mt-8">
           <h2
             className="
-            mt-6
+              font-serif
 
-            text-xl
-            md:text-2xl
+              text-[34px]
 
-            font-serif
+              leading-tight
 
-            leading-tight
-
-            text-neutral-900
+              text-neutral-900
             "
           >
             {title}
@@ -153,84 +138,44 @@ const MessageCard = ({
 
           <p
             className="
-            mt-3
+              mt-4
 
-            text-sm
+              max-w-md
 
-            leading-7
+              text-[16px]
 
-            text-neutral-600
+              leading-8
+
+              text-neutral-500
             "
           >
             {subtitle}
           </p>
-
         </div>
 
         {/* Divider */}
 
-        <div className="my-6 h-px w-full bg-white/60" />
+        <div className="my-8 h-px bg-neutral-100" />
 
-        {/* Progress */}
+        {/* Footer */}
 
         <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span
+              className={`h-2.5 w-2.5 rounded-full ${statusColor}`}
+            />
 
-          <div
-            className={`
-            flex
-            items-center
-            gap-2
-
-            rounded-full
-
-            px-3
-            py-2
-
-            text-sm
-
-            ${
-              finished
-                ? "bg-emerald-100 text-emerald-700"
-                : completed === 0
-                ? "bg-neutral-100 text-neutral-600"
-                : "bg-amber-100 text-amber-700"
-            }
-            `}
-          >
-            {finished ? (
-              <CheckCircle2 size={16} />
-            ) : (
-              <Circle size={16} />
-            )}
-
-            <span>
-
-              {finished
-                ? `${completed}/${total}`
-                : completed === 0
-                ? "Not Started"
-                : `${total - completed} Left`}
-
+            <span
+              className={`text-sm font-medium ${statusTextColor}`}
+            >
+              {statusText}
             </span>
-
           </div>
 
-          <span
-            className="
-            text-xs
-
-            tracking-[0.25em]
-
-            uppercase
-
-            text-neutral-500
-            "
-          >
-            Step {step}
+          <span className="text-sm font-medium text-neutral-400">
+            {completed} / {total}
           </span>
-
         </div>
-
       </div>
     </button>
   );
