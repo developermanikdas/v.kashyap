@@ -58,12 +58,12 @@ const QuoteCard = () => {
           className="relative w-full flex flex-col items-start justify-start text-left animate-[quoteFade_700ms_ease]"
         >
           {/* Large Background Quote */}
-          <span className="absolute -top-12 md:-top-24 left-0 text-[7rem] md:text-[15rem] font-black text-neutral-200 opacity-40 leading-none select-none pointer-events-none">
+          <span className="absolute -top-2 md:-top-24 left-0 text-[12rem] md:text-[15rem] font-black text-slate-100 opacity-80 leading-none select-none pointer-events-none">
             “
           </span>
 
           {/* Quote */}
-          <h1 className="relative z-10 text-left text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight text-neutral-900 md:text-center md:w-full">
+          <h1 className="relative mt-16 z-10 text-left text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight text-neutral-900 md:text-center md:w-full">
             {quote.content}
           </h1>
 
