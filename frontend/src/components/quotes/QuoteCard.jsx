@@ -40,27 +40,35 @@ const QuoteCard = () => {
 
   return (
     <>
-      <main className="max-h-screen flex items-start justify-center px-6 my-36 bg-transparent">
-        <button
-          onClick={() => navigate("/")}
-          className="absolute top-24 left-6 md:left-10 flex items-center gap-2 text-neutral-600 hover:text-black transition-colors"
+      <main className="min-h-[75vh] flex flex-col items-start justify-start px-6 py-6 md:py-12 max-w-5xl mx-auto w-full bg-transparent">
+        {/* Back Button Container */}
+        <div className="w-full flex justify-start mb-8 md:mb-12">
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-neutral-600 hover:text-black transition-colors cursor-pointer"
+          >
+            <ArrowLeft size={20} />
+            <span>Back</span>
+          </button>
+        </div>
+
+        {/* Quote Section */}
+        <section 
+          key={quote.content} 
+          className="relative w-full flex flex-col items-start justify-start text-left animate-[quoteFade_700ms_ease]"
         >
-          <ArrowLeft size={20} />
-          <span>Back</span>
-        </button>
-        <section key={quote.content} className="relative max-w-6xl w-full animate-[quoteFade_700ms_ease]">
           {/* Large Background Quote */}
-          <span className="absolute -top-16 left-0 text-[9rem] sm:text-[12rem] md:text-[15rem] font-black text-neutral-200 opacity-40 leading-none select-none pointer-events-none">
+          <span className="absolute -top-12 md:-top-24 left-0 text-[7rem] md:text-[15rem] font-black text-neutral-200 opacity-40 leading-none select-none pointer-events-none">
             “
           </span>
 
           {/* Quote */}
-          <h1 className="relative z-10 text-left md:text-center text-5xl sm:text-4xl md:text-6xl lg:text-8xl sm:font-bold leading-tight tracking-tight text-neutral-900 ">
+          <h1 className="relative z-10 text-left text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light leading-tight tracking-tight text-neutral-900 md:text-center md:w-full">
             {quote.content}
           </h1>
 
           {/* Author */}
-          <p className="relative z-10 mt-8 text-left md:text-center text-sm md:text-base text-neutral-500 uppercase tracking-[0.25em]">
+          <p className="relative z-10 mt-6 md:mt-8 text-left text-xs md:text-base text-neutral-500 uppercase tracking-[0.25em] md:text-center md:w-full">
             {quote.author}
           </p>
         </section>
