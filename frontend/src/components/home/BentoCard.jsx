@@ -19,7 +19,8 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
       group
       relative
       overflow-hidden
-      rounded-[32px]
+      rounded-[24px]
+      md:rounded-[32px]
       aspect-square
       md:aspect-auto
       md:h-72
@@ -53,7 +54,7 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
       />
 
       {/* Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
       {/* Purple Glow */}
       <div
@@ -92,17 +93,20 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
       />
 
       {/* Content */}
-      <div className="relative flex h-full flex-col justify-between p-6 text-white">
+      <div className="relative flex h-full flex-col justify-between p-4 md:p-6 text-white">
         {/* Icon */}
         <div
           className="
           flex
-          h-14
-          w-14
+          h-10
+          w-10
+          md:h-14
+          md:w-14
           items-center
           justify-center
 
-          rounded-2xl
+          rounded-xl
+          md:rounded-2xl
 
           bg-white/20
           backdrop-blur-xl
@@ -119,7 +123,7 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
           group-hover:rotate-6
           "
         >
-          <Icon size={26} />
+          <Icon className="h-5 w-5 md:h-6 md:w-6" />
         </div>
 
         {/* Bottom */}
@@ -127,8 +131,9 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
           <div className="flex items-center justify-between">
             <h2
               className="
-              text-2xl
-              md:text-3xl
+              text-lg
+              md:text-2xl
+              lg:text-3xl
               font-semibold
               tracking-tight
               "
@@ -137,8 +142,11 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
             </h2>
 
             <ChevronRight
-              size={24}
               className="
+              h-5
+              w-5
+              md:h-6
+              md:w-6
               transition-all
               duration-300
               group-hover:translate-x-2
@@ -149,13 +157,15 @@ const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
 
           <p
             className="
-            mt-3
-            max-w-[90%]
+            mt-1.5
+            md:mt-3
+            max-w-[95%]
 
-            text-sm
+            text-xs
+            md:text-sm
             leading-relaxed
 
-            text-white/80
+            text-white/85
             "
           >
             {subtitle}

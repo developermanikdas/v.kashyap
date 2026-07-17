@@ -3,7 +3,7 @@ import { features } from "../../data/Features";
 
 const ShowBentoCards = () => {
   return (
-    <section className="grid grid-cols-1 gap-6 p-4 md:grid-cols-2 lg:grid-cols-4">
+    <section className="grid grid-cols-2 gap-3 p-3 md:gap-6 md:p-6 lg:grid-cols-4">
       {features.map((feature) => (
         <BentoCard
           key={feature.id}
