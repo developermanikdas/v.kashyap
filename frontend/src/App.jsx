@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Quotes from "./pages/Quotes";
 import Preparing from "./pages/Preparing";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 import ScrollToTop from "./components/layouts/ScrollToTop";
@@ -39,6 +40,7 @@ export default function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/quotes" element={<Quotes />} />
+          <Route path="/profile" element={<Profile />} />
 
           {/* 404 */}
 
