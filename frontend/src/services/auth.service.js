@@ -13,13 +13,7 @@ export const loginUser = async (credentials) => {
 };
 
 export const getCurrentUser = async () => {
-  const token = localStorage.getItem("token");
-
-  const response = await api.get("/auth/me", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await api.get("/auth/me");
 
   return response.data;
 };

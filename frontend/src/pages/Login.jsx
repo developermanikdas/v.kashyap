@@ -1,6 +1,6 @@
 import { User, Lock, HeartHandshake } from "lucide-react";
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../services/auth.service.js";
 import { useAuth } from "../hooks/useAuth";
 
@@ -151,18 +151,6 @@ const Login = () => {
                 {loading ? "Logging In..." : "Login"}
               </button>
             </form>
-
-            {/* Register */}
-
-            <p className="mt-8 text-center text-gray-600">
-              Don't have an account?
-              <Link
-                to="/register"
-                className="ml-2 font-semibold text-black hover:underline"
-              >
-                Create Account
-              </Link>
-            </p>
           </div>
         </div>
       </div>

@@ -2,13 +2,13 @@ import {
   Quote,
   Image,
   BookOpen,
-  Lock,
+  Gift,
 } from "lucide-react";
 
 import quoteImg from "../assets/images/quote.webp";
 import imageImg from "../assets/images/image.webp";
 import storyImg from "../assets/images/story.webp";
-import secretImg from "../assets/images/secret.webp";
+import giftImg from "../assets/images/gift.jpg";
 
 export const features = [
   {
@@ -37,10 +37,10 @@ export const features = [
   },
   {
     id: 4,
-    title: "Secret Message",
-    subtitle: "A surprise awaits you.",
-    icon: Lock,
-    image: secretImg,
-    path: "/message"
+    title: "Birthday Gift",
+    subtitle: "A special surprise awaits you.",
+    icon: Gift,
+    image: giftImg,
+    path: "https://birthday-wish-feedback-lovat.vercel.app/"
   },
 ];

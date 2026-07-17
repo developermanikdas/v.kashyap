@@ -1,26 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, RefreshCw } from "lucide-react";
 import { useState } from "react";
-import { useEffect } from "react";
 import { quotes } from "../../data/quotes";
 
 const QuoteCard = () => {
   const navigate = useNavigate();
 
-  const [quote, setQuote] = useState({
-    content: "",
-    author: "",
-  });
+  const [quote, setQuote] = useState(() => quotes[Math.floor(Math.random() * quotes.length)]);
 
   const fetchQuote = () => {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
     setQuote(randomQuote);
   };
-
-  useEffect(() => {
-    fetchQuote();
-  }, []);
 
   return (
     <>

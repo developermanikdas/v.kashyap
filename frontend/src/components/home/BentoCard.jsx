@@ -3,9 +3,18 @@ import { useNavigate } from "react-router-dom";
 
 const BentoCard = ({ title, subtitle, image, icon: Icon, path }) => {
   const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (path.startsWith("http://") || path.startsWith("https://")) {
+      window.open(path, "_blank", "noopener,noreferrer");
+    } else {
+      navigate(path);
+    }
+  };
+
   return (
     <div
-      onClick={() => navigate(path)}
+      onClick={handleClick}
       className="
       group
       relative
