@@ -11,10 +11,12 @@ import Preparing from "./pages/Preparing";
 import Login from "./pages/Login";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
+import ScrollToTop from "./components/layouts/ScrollToTop";
 
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
 
         {/* Authentication */}

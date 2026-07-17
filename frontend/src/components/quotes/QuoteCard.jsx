@@ -1,18 +1,42 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, RefreshCw } from "lucide-react";
-import { useState } from "react";
-import { quotes } from "../../data/quotes";
+import { useState, useEffect } from "react";
+import api from "../../api/axios";
 
 const QuoteCard = () => {
   const navigate = useNavigate();
 
-  const [quote, setQuote] = useState(() => quotes[Math.floor(Math.random() * quotes.length)]);
+  const [quote, setQuote] = useState({
+    content: "Loading inspiration...",
+    author: "Please wait...",
+  });
+  const [loading, setLoading] = useState(false);
 
-  const fetchQuote = () => {
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-
-    setQuote(randomQuote);
+  const fetchQuote = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get("/quotes/random");
+      if (response.data?.success && response.data?.quote) {
+        setQuote(response.data.quote);
+      }
+    } catch (error) {
+      console.error("Failed to fetch quote:", error);
+      setQuote({
+        content: "Consistency beats intensity when intensity doesn't last.",
+        author: "Unknown",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    const init = async () => {
+      await Promise.resolve();
+      fetchQuote();
+    };
+    init();
+  }, []);
 
   return (
     <>
@@ -24,7 +48,7 @@ const QuoteCard = () => {
           <ArrowLeft size={20} />
           <span>Back</span>
         </button>
-        <section className="relative max-w-6xl w-full animate-[quoteFade_700ms_ease]">
+        <section key={quote.content} className="relative max-w-6xl w-full animate-[quoteFade_700ms_ease]">
           {/* Large Background Quote */}
           <span className="absolute -top-16 left-0 text-[9rem] sm:text-[12rem] md:text-[15rem] font-black text-neutral-200 opacity-40 leading-none select-none pointer-events-none">
             “
@@ -45,10 +69,11 @@ const QuoteCard = () => {
       {/* Floating Button */}
       <button
         onClick={fetchQuote}
-        className="fixed bottom-18 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full border border-neutral-300 bg-black text-white px-6 py-3 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 "
+        disabled={loading}
+        className="fixed bottom-18 left-1/2 -translate-x-1/2 flex items-center gap-2 rounded-full border border-neutral-300 bg-black text-white px-6 py-3 shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-75"
       >
-        <RefreshCw size={18} />
-        <span className="">New Quote</span>
+        <RefreshCw size={18} className={loading ? "animate-spin" : ""} />
+        <span className="">{loading ? "Loading..." : "New Quote"}</span>
       </button>
 
       <style>
