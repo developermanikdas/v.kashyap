@@ -8,7 +8,7 @@ import {
 import quoteImg from "../assets/images/quote.webp";
 import imageImg from "../assets/images/image.webp";
 import storyImg from "../assets/images/story.webp";
-import giftImg from "../assets/images/gift.jpg";
+import giftImg from "../assets/images/gift.webp";
 
 export const features = [
   {
