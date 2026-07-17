@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { ArrowLeft, LogOut, User, Mail } from "lucide-react";
+import profileImg from "../assets/images/devi-ji.png";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -9,16 +10,6 @@ const Profile = () => {
   const handleLogout = () => {
     logout();
     navigate("/login");
-  };
-
-  const getInitials = (name) => {
-    if (!name) return "U";
-    return name
-      .split(" ")
-      .map((n) => n[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 2);
   };
 
   return (
@@ -44,8 +35,8 @@ const Profile = () => {
           <div className="mt-6 flex justify-center">
             <div className="relative group">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-violet-500 via-purple-400 to-orange-300 blur-[8px] opacity-75 group-hover:opacity-100 transition duration-500" />
-              <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-white text-3xl font-semibold tracking-wide text-neutral-800 shadow-md">
-                {getInitials(user?.fullName)}
+              <div className="relative flex h-24 w-24 overflow-hidden items-center justify-center rounded-full bg-white shadow-md">
+                <img src={profileImg} alt="Profile" className="h-[80%] w-[70%] object-contain" />
               </div>
             </div>
           </div>

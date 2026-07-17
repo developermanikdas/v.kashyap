@@ -1,6 +1,7 @@
-import { User, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.webp";
+import profileImg from "../../assets/images/devi-ji.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -36,9 +37,9 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <button 
           onClick={() => navigate("/profile")}
-          className="h-10 w-10 md:h-12 md:w-12 rounded-full flex items-center justify-center bg-white shadow-sm border border-neutral-100 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer text-neutral-600 hover:text-violet-950"
+          className="h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-neutral-100 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
         >
-          <User size={20} strokeWidth={2} />
+          <img src={profileImg} alt="Profile" className="h-7 w-7 md:h-9 md:w-9 object-contain" />
         </button>
         <Sparkles size={14} className="text-violet-300/80 animate-pulse" />
       </div>
