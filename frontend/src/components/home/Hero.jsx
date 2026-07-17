@@ -3,14 +3,7 @@ import { Sparkles } from "lucide-react";
 const Hero = () => {
   return (
     <>
-      <section className="relative overflow-hidden px-6 py-12">
-        {/* Background Blobs */}
-        <div className="absolute -top-24 -left-20 h-72 w-72 rounded-full bg-violet-300/30 blur-[110px] animate-[float_10s_ease-in-out_infinite]" />
-
-        <div className="absolute top-12 right-0 h-72 w-72 rounded-full bg-orange-200/40 blur-[120px] animate-[floatReverse_12s_ease-in-out_infinite]" />
-
-        <div className="absolute bottom-0 left-1/2 h-60 w-60 -translate-x-1/2 rounded-full bg-sky-200/30 blur-[100px] animate-[float_9s_ease-in-out_infinite]" />
-
+      <section className="relative px-6 py-8">
         {/* Floating Sparkles */}
         <Sparkles className="absolute left-16 top-44 h-5 w-5 text-violet-300 animate-pulse" />
 
@@ -20,18 +13,9 @@ const Hero = () => {
 
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-5 py-2 shadow-sm backdrop-blur-md">
-            <Sparkles size={15} className="text-violet-500" />
-            <span className="text-sm font-medium text-neutral-700">
-              Welcome to Serenity
-            </span>
-          </div>
-
           {/* Heading */}
           <h1
-            className="mt-8 text-6xl leading-[0.9] tracking-tight text-neutral-900 md:text-8xl"
+            className="text-6xl leading-[0.9] tracking-tight text-neutral-900 md:text-8xl"
             style={{
               fontFamily: '"Cormorant Garamond", serif',
             }}

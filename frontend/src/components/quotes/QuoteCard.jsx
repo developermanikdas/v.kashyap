@@ -40,7 +40,7 @@ const QuoteCard = () => {
 
   return (
     <>
-      <main className="max-h-screen flex items-start justify-center px-6 my-36 bg-white">
+      <main className="max-h-screen flex items-start justify-center px-6 my-36 bg-transparent">
         <button
           onClick={() => navigate("/")}
           className="absolute top-24 left-6 md:left-10 flex items-center gap-2 text-neutral-600 hover:text-black transition-colors"
