@@ -1,0 +1,105 @@
+.container {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.backBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  margin-bottom: 3rem;
+  background: transparent;
+}
+
+.backBtn:hover {
+  color: var(--color-primary);
+}
+
+.quoteSection {
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.decorativeQuoteMark {
+  font-family: var(--font-serif);
+  font-size: 10rem;
+  line-height: 1;
+  color: rgba(43, 40, 37, 0.06);
+  position: absolute;
+  top: -4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  user-select: none;
+  pointer-events: none;
+}
+
+.quoteText {
+  position: relative;
+  z-index: 10;
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  transition: opacity var(--transition-normal);
+}
+
+.author {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.refreshBtn {
+  margin-top: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.refreshBtn:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.refreshBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .quoteText {
+    font-size: 1.625rem;
+  }
+}

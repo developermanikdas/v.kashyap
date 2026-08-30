@@ -1,24 +1,24 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
-import jwt from "jsonwebtoken";
 import generateToken from "../utils/generateToken.js";
-
 
 export const login = async (req, res) => {
   try {
     const { identifier, password } = req.body;
 
-    if (!identifier || !password) {
+    if (!identifier || !password || typeof identifier !== "string" || typeof password !== "string") {
       return res.status(400).json({
         success: false,
-        message: "Username/Email and password are required.",
+        message: "Valid string username/email and password are required.",
       });
     }
 
+    const cleanIdentifier = identifier.trim().toLowerCase();
+
     const user = await User.findOne({
       $or: [
-        { username: identifier.toLowerCase() },
-        { email: identifier.toLowerCase() },
+        { username: cleanIdentifier },
+        { email: cleanIdentifier },
       ],
     });
 
@@ -51,11 +51,9 @@ export const login = async (req, res) => {
         email: user.email,
       },
     });
-
   } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
+    console.error("User login error:", error);
+    return res.status(500).json({
       success: false,
       message: "Internal Server Error",
     });

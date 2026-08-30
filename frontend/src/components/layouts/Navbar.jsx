@@ -1,49 +1,90 @@
-import { Sparkles } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/logo.webp";
-import profileImg from "../../assets/images/devi-ji.png";
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { User, Menu, X } from "lucide-react";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const mainNavItems = [
+    { label: "Home", path: "/" },
+    { label: "Safety Hub", path: "/safety-hub" },
+    { label: "Stories", path: "/stories" },
+    { label: "Acknowledgement", path: "/acknowledgement" },
+  ];
+
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl flex items-center justify-between px-6 md:px-8 py-3 rounded-full bg-white border border-white/40 shadow-[0_8px_32px_0_rgba(120,119,198,0.08)] z-50">
-      {/* Left Logo + Brand */}
-      <div 
-        className="flex items-center gap-2.5 cursor-pointer select-none group" 
-        onClick={() => navigate("/")}
-      >
-        <div className="relative h-10 w-10 overflow-hidden rounded-full border border-purple-100/50 bg-purple-50/30 flex items-center justify-center transition-transform duration-500 group-hover:rotate-12">
-          <img src={logo} alt="Logo" className="h-full w-full object-cover" />
+    <header className={styles.header}>
+      <div className={styles.container}>
+        {/* Brand */}
+        <div className={styles.brand} onClick={() => navigate("/")}>
+          <span className={styles.brandText}>The Many Strings</span>
         </div>
-        <span 
-          className="text-lg md:text-xl font-medium tracking-wide text-neutral-800 flex items-center gap-0.5"
-          style={{ fontFamily: '"Cormorant Garamond", serif' }}
-        >
-          Serenity
-          <Sparkles size={12} className="text-violet-400 -mt-2" />
-        </span>
-      </div>
 
-      {/* Middle Quote Pill (Hidden on Mobile) */}
-      <div className="hidden md:flex items-center gap-2.5 rounded-full bg-violet-50/40 border border-violet-100/30 px-5 py-1.5 shadow-[inset_0_1px_2px_rgba(120,119,198,0.05)]">
-        <Sparkles size={14} className="text-violet-400/80" />
-        <span className="text-xs md:text-sm font-medium text-neutral-700">
-          Every moment is a fresh beginning.
-        </span>
-      </div>
-
-      {/* Right Profile Icon */}
-      <div className="flex items-center gap-2">
-        <button 
-          onClick={() => navigate("/profile")}
-          className="h-10 w-10 md:h-12 md:w-12 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-neutral-100 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"
+        {/* Nav Links (Desktop + Mobile Dropdown) */}
+        <ul
+          className={`${styles.navLinks} ${
+            mobileMenuOpen ? styles.navLinksOpen : ""
+          }`}
         >
-          <img src={profileImg} alt="Profile" className="h-7 w-7 md:h-9 md:w-9 object-contain" />
-        </button>
-        <Sparkles size={14} className="text-violet-300/80 animate-pulse" />
+          {mainNavItems.map((item) => (
+            <li key={item.path} className={styles.navItem}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+                }
+                onClick={handleNavClick}
+                end={item.path === "/"}
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+
+          {/* Profile option in mobile dropdown list */}
+          <li className={`${styles.navItem} ${styles.mobileOnly}`}>
+            <NavLink
+              to="/profile"
+              className={({ isActive }) =>
+                `${styles.navLink} ${isActive ? styles.activeLink : ""}`
+              }
+              onClick={handleNavClick}
+            >
+              Profile
+            </NavLink>
+          </li>
+        </ul>
+
+        {/* Right Actions: Profile Icon & Hamburger Button Together */}
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={styles.profileBtn}
+            onClick={() => navigate("/profile")}
+            title="User Profile"
+            aria-label="Profile"
+          >
+            <User size={16} />
+          </button>
+
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            className={styles.mobileMenuBtn}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
-    </nav>
+    </header>
   );
 };
 

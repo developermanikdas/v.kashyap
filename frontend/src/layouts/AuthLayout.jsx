@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
+import styles from "./AuthLayout.module.css";
 
 const AuthLayout = () => {
   return (
-    <main className="min-h-screen">
+    <main className={styles.main}>
       <Outlet />
     </main>
   );

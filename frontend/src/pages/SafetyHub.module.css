@@ -1,0 +1,511 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 6rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.headerText {
+  max-width: 650px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 3.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
+}
+
+.titleBar {
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Primary Dark Brand Button */
+.requestBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F5F1E8;
+  background-color: var(--color-primary, #2B2825);
+  border: 1px solid var(--color-primary, #2B2825);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+}
+
+.requestBtn:hover {
+  background-color: var(--color-secondary, #800020);
+  border-color: var(--color-secondary, #800020);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Ultra-Minimal Emergency & Helplines Strip */
+.emergencyStrip {
+  background-color: #FAF7F2;
+  border: 1px solid var(--color-border-subtle);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: var(--radius-xs);
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.emergencyLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--color-text-main);
+}
+
+.emergencyLabel {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  font-size: 0.6875rem;
+}
+
+.helplineLink {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color var(--transition-fast);
+}
+
+.helplineLink:hover {
+  color: var(--color-secondary);
+  text-decoration: underline;
+}
+
+.dot {
+  color: var(--color-border-subtle);
+  font-size: 0.75rem;
+}
+
+.sosAppLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xs);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.sosAppLink:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+/* Minimalist Control & Filter Bar */
+.filterBar {
+  margin: 1rem 0 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 1.25rem;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.leftControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toggleBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.toggleBtn:hover, .toggleBtnActive {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+.filterSegmented {
+  display: inline-flex;
+  background: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  padding: 2px;
+}
+
+.segmentBtn {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.segmentBtnActive {
+  background-color: var(--color-secondary-light, #FAF7F2);
+  color: var(--color-secondary, #800020);
+  font-weight: 700;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.4rem 0.75rem;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-xs);
+  min-width: 240px;
+}
+
+.searchIcon {
+  color: var(--color-text-subtle);
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-text-main);
+  outline: none;
+  width: 100%;
+}
+
+/* Collapsible Categories Panel */
+.categoriesDrawer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #FAF7F2;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-sm);
+  animation: fadeIn 200ms ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.tabBtn {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  background: #FFFFFF;
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.tabBtn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.activeTabBtn {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
+}
+
+.activeTabBtn:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+/* Minimal Grid & Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 4rem;
+}
+
+.card {
+  background-color: transparent;
+  border: 1px solid var(--color-border);
+  padding: 2rem 1.85rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  position: relative;
+}
+
+.card:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 0.75rem;
+}
+
+.scenarioNum {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-subtle);
+  letter-spacing: 0.04em;
+}
+
+/* Minimal Text Risk Indicator (No Background) */
+.riskText {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.riskLow {
+  color: #6E7569;
+}
+
+.riskHigh {
+  color: #A84C24;
+}
+
+.riskCritical {
+  color: var(--color-secondary, #800020);
+  font-weight: 700;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.35;
+  margin-bottom: 0.65rem;
+  text-align: left;
+}
+
+.cardSummary {
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: 0.85rem;
+  margin-top: auto;
+}
+
+.arrowIcon {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.card:hover .arrowIcon {
+  color: var(--color-secondary);
+  transform: translate(2px, -2px);
+}
+
+.noResults {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* Modal Form styling */
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.input, .select, .textarea {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.65rem 0.85rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xs);
+  color: var(--color-text-main);
+  outline: none;
+}
+
+.input:focus, .textarea:focus, .select:focus {
+  border-color: var(--color-primary);
+}
+
+.textarea {
+  line-height: 1.6;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .requestBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .leftControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .searchBox {
+    width: 100%;
+  }
+
+  .emergencyStrip {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

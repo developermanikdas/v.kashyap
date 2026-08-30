@@ -6,7 +6,19 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="flex h-screen items-center justify-center">
+      <div
+        style={{
+          display: "flex",
+          height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+          fontFamily: "var(--font-serif)",
+          fontSize: "1.25rem",
+          fontStyle: "italic",
+          color: "var(--color-primary)",
+          backgroundColor: "var(--color-neutral-bg)",
+        }}
+      >
         Loading...
       </div>
     );

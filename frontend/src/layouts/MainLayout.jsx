@@ -1,46 +1,37 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 import Navbar from "../components/layouts/Navbar";
+import Footer from "../components/layouts/Footer";
+import AIChatDrawer from "../components/layouts/AIChatDrawer";
+import styles from "./MainLayout.module.css";
 
 const MainLayout = () => {
-  return (
-    <div className="relative min-h-screen bg-gradient-to-tr from-[#f5f3ff] via-[#faf9ff] to-[#fffafb] overflow-x-hidden">
-      {/* Global Background Blobs */}
-      <div 
-        className="absolute -top-20 -left-20 h-[30rem] w-[30rem] rounded-full bg-violet-300/25 blur-[120px] pointer-events-none"
-        style={{ animation: "floatGlobal 15s ease-in-out infinite" }}
-      />
-      <div 
-        className="absolute top-1/4 right-0 translate-x-20 h-[35rem] w-[35rem] rounded-full bg-orange-200/30 blur-[130px] pointer-events-none"
-        style={{ animation: "floatGlobalReverse 18s ease-in-out infinite" }}
-      />
-      <div 
-        className="absolute bottom-10 left-1/4 h-[25rem] w-[25rem] rounded-full bg-sky-200/20 blur-[110px] pointer-events-none"
-        style={{ animation: "floatGlobal 14s ease-in-out infinite" }}
-      />
+  const [aiChatOpen, setAiChatOpen] = useState(false);
 
+  return (
+    <div className={styles.layout}>
       <Navbar />
-      <main className="pt-28 md:pt-32 pb-12">
-        <Outlet />
+
+      <main className={styles.mainContent}>
+        <Outlet context={{ openAIChat: () => setAiChatOpen(true) }} />
       </main>
 
-      <style>{`
-        @keyframes floatGlobal {
-          0%, 100% {
-            transform: translateY(0px) scale(1);
-          }
-          50% {
-            transform: translateY(-25px) scale(1.05);
-          }
-        }
-        @keyframes floatGlobalReverse {
-          0%, 100% {
-            transform: translateY(0px) scale(1);
-          }
-          50% {
-            transform: translateY(25px) scale(0.95);
-          }
-        }
-      `}</style>
+      <Footer />
+
+      {/* Floating Bottom-Right AI Chat Button */}
+      <button
+        type="button"
+        className={styles.floatingAIChatBtn}
+        onClick={() => setAiChatOpen(true)}
+        aria-label="Open Archive AI Chat"
+      >
+        <Sparkles size={14} />
+        <span>AI CHAT</span>
+      </button>
+
+      {/* AI Assistant Drawer */}
+      <AIChatDrawer isOpen={aiChatOpen} onClose={() => setAiChatOpen(false)} />
     </div>
   );
 };

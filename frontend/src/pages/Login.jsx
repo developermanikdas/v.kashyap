@@ -1,21 +1,37 @@
-import { User, Lock, HeartHandshake } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 import { loginUser } from "../services/auth.service.js";
 import { useAuth } from "../hooks/useAuth";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
   });
 
+  useEffect(() => {
+    try {
+      const savedUser = localStorage.getItem("archive_remember_user");
+      if (savedUser) {
+        setFormData((prev) => ({ ...prev, identifier: savedUser }));
+        setRememberMe(true);
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
   const handleChange = (e) => {
+    setError("");
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -27,134 +43,118 @@ const Login = () => {
 
     try {
       setLoading(true);
-
+      setError("");
       const data = await loginUser(formData);
 
-      console.log(data);
+      if (rememberMe) {
+        localStorage.setItem("archive_remember_user", formData.identifier);
+      } else {
+        localStorage.removeItem("archive_remember_user");
+      }
 
       login(data.token, data.user);
-
       navigate("/");
-    } catch (error) {
-      alert(error.response?.data?.message || "Login failed.");
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Login failed. Please check your credentials."
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="h-screen w-screen overflow-hidden bg-white">
-      <div className="grid h-full w-full lg:grid-cols-2">
-        {/* Left - IMAGE */}
-
-        <div className="relative hidden h-full lg:block">
+    <div className={styles.page}>
+      <div className={styles.card}>
+        {/* Left - Serene Vector Illustration */}
+        <div className={styles.illustrationArea}>
           <img
-            src="https://cdn.pixabay.com/photo/2026/06/20/14/41/mohamed_hassan-jungle-10341915_1280.png"
-            alt="Login"
-            className="absolute inset-0 h-full w-full object-cover"
+            src="/login.svg"
+            alt="Serenity Yoga Illustration"
+            style={{ width: "100%", maxWidth: "420px", height: "auto", display: "block" }}
           />
-
-          <div className="absolute inset-0 bg-black/40"></div>
-
-          <div className="absolute inset-0 flex flex-col justify-between p-12 text-white">
-            <div>
-              <h2 className="text-6xl font-bold leading-tight">
-                Welcome
-                <br />
-                Back.
-              </h2>
-
-              <p className="mt-6 max-w-md text-lg opacity-90">
-                Continue writing heartfelt letters that create lasting memories
-                for the people who matter most.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <HeartHandshake />
-
-              <span>Every memory deserves to be remembered.</span>
-            </div>
-          </div>
         </div>
 
-        {/* Right - FORM */}
+        {/* Right - Editorial Form */}
+        <div className={styles.formArea}>
+          <div className={styles.header}>
+            <h1 className={styles.title}>Serenity</h1>
+            <div className={styles.divider} />
+            <p className={styles.subtitle}>Let&apos;s Sign In</p>
+          </div>
 
-        <div className="flex h-full items-center justify-center px-8 sm:px-12 lg:px-20">
-          <div className="w-full max-w-md">
-            <div className="mb-10">
-              <h1 className="text-5xl font-bold tracking-tight">
-                Welcome Back
-              </h1>
+          {error && <div className={styles.errorMessage}>{error}</div>}
 
-              <p className="mt-3 text-gray-500">
-                Sign in and continue creating heartfelt memories.
-              </p>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.field}>
+              <label htmlFor="identifier" className={styles.label}>
+                USER NAME
+              </label>
+              <input
+                id="identifier"
+                type="text"
+                name="identifier"
+                value={formData.identifier}
+                onChange={handleChange}
+                placeholder="username"
+                className={styles.input}
+                required
+                autoComplete="username"
+              />
             </div>
 
-            {/* Username or Email */}
-
-            <form onSubmit={handleSubmit}>
-              <div className="mb-5">
-                <label className="mb-2 block font-medium">
-                  Username or Email
-                </label>
-
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 transition focus-within:border-black">
-                  <User size={18} className="text-gray-400" />
-
-                  <input
-                    type="text"
-                    name="identifier"
-                    value={formData.identifier}
-                    onChange={handleChange}
-                    placeholder="Username or Email"
-                    className="w-full bg-transparent px-3 py-4 outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Password */}
-
-              <div className="mb-3">
-                <label className="mb-2 block font-medium">Password</label>
-
-                <div className="flex items-center rounded-xl border border-gray-300 px-4 transition focus-within:border-black">
-                  <Lock size={18} className="text-gray-400" />
-
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    placeholder="Password"
-                    className="w-full bg-transparent px-3 py-4 outline-none"
-                  />
-                </div>
-              </div>
-
-              {/* Forgot Password */}
-
-              <div className="mb-8 flex justify-end">
-                <button className="text-sm font-medium text-gray-500 transition hover:text-black">
-                  Forgot Password?
+            <div className={styles.field}>
+              <label htmlFor="password" className={styles.label}>
+                PASSWORD
+              </label>
+              <div className={styles.inputWrapper}>
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="••••••••"
+                  className={`${styles.input} ${styles.inputWithIcon}`}
+                  required
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  className={styles.eyeBtn}
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  title={showPassword ? "Hide password" : "Show password"}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                 </button>
               </div>
+            </div>
 
-              {/* Login Button */}
+            {/* Remember Me Checkbox */}
+            <div className={styles.optionsRow}>
+              <label className={styles.rememberMe}>
+                <input
+                  type="checkbox"
+                  className={styles.checkbox}
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
+                <span>Remember me</span>
+              </label>
+            </div>
 
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full rounded-xl bg-black py-4 text-lg font-semibold text-white transition-all duration-300 hover:bg-neutral-800 disabled:opacity-60"
-              >
-                {loading ? "Logging In..." : "Login"}
-              </button>
-            </form>
-          </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className={styles.submitBtn}
+            >
+              {loading ? "SIGNING IN..." : "SIGN IN"}
+            </button>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

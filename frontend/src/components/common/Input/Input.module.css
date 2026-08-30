@@ -1,0 +1,104 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+  position: relative;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background: transparent;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--color-text-subtle);
+  font-weight: 300;
+}
+
+/* Variant: Underline (Editorial Style) */
+.underline {
+  border: none;
+  border-bottom: 1px solid var(--color-primary);
+  border-radius: 0;
+  padding: 0.5rem 0;
+  font-size: 0.9375rem;
+}
+
+.underline:focus {
+  border-bottom: 1.5px solid var(--color-secondary);
+}
+
+/* Variant: Box / Outlined */
+.boxed {
+  border: 1px solid var(--color-border-subtle);
+  background-color: var(--color-neutral-card);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.875rem;
+}
+
+.boxed:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+/* Variant: Search (Design System Pill/Box) */
+.search {
+  border: 1px solid rgba(43, 40, 37, 0.12);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.9rem 0.65rem 2.4rem;
+  font-size: 0.875rem;
+}
+
+.search:focus {
+  border-color: var(--color-primary);
+  background-color: #FFFFFF;
+}
+
+.iconLeft {
+  position: absolute;
+  left: 0.75rem;
+  color: var(--color-text-subtle);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconRight {
+  position: absolute;
+  right: 0.75rem;
+  color: var(--color-text-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  margin-top: 0.25rem;
+}

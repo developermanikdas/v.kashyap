@@ -1,12 +1,17 @@
 import express from "express";
-import protect from "../middleware/auth.js";
-import { getRandomQuote } from "../controllers/quote.controller.js";
+import {
+  getRandomQuote,
+  getDailyQuote,
+  getAllQuotes,
+  getQuoteById,
+} from "../controllers/quote.controller.js";
 
 const router = express.Router();
 
-// Apply auth protection middleware to all quote routes
-router.use(protect);
-
+// Public Quote Retrieval Endpoints
 router.get("/random", getRandomQuote);
+router.get("/daily", getDailyQuote);
+router.get("/", getAllQuotes);
+router.get("/:id", getQuoteById);
 
 export default router;

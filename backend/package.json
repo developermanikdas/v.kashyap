@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "seed:quotes": "node src/scripts/seedQuotes.js",
+    "seed:resources": "node src/scripts/seedResources.js",
+    "seed:all": "node src/scripts/seedAllLocalDataToMongo.js",
+    "seed:memories": "node src/scripts/seedBotMemories.js",
+    "seed:user": "node src/scripts/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -14,11 +19,15 @@
   "dependencies": {
     "axios": "^1.18.1",
     "bcryptjs": "^3.0.3",
+    "cloudinary": "^2.11.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.6.2",
+    "helmet": "^8.3.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.7.4",
-    "react-router-dom": "^7.18.1"
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.6"
   }
 }
