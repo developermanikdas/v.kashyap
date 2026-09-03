@@ -301,12 +301,16 @@ export const viewResourcePdf = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Check if ID matches a Resource document or an explicit Cloudinary public_id
+    // Check if ID matches a Resource document, slug, or MongoDB _id
     const resource = await Resource.findOne({
-      $or: [{ id: id }, { _id: id.match(/^[0-9a-fA-F]{24}$/) ? id : null }],
+      $or: [
+        { id: id },
+        { _id: id && id.match(/^[0-9a-fA-F]{24}$/) ? id : null },
+        { cloudinaryPublicId: id },
+      ].filter(Boolean),
     }).lean();
 
-    const publicId = resource?.cloudinaryPublicId || id || "Women_s_Safety_and_OCD_Guide";
+    const publicId = resource?.cloudinaryPublicId || (id === "womens-safety-and-ocd-guide" ? "Women_s_Safety_and_OCD_Guide" : id);
 
     try {
       const authenticatedUrl = cloudinary.utils.private_download_url(publicId, "pdf", {
@@ -317,14 +321,14 @@ export const viewResourcePdf = async (req, res) => {
 
       const pdfResponse = await axios.get(authenticatedUrl, {
         responseType: "stream",
-        timeout: 10000,
+        timeout: 15000,
       });
 
       res.setHeader("Content-Type", "application/pdf");
       res.setHeader("Content-Disposition", `inline; filename="${publicId}.pdf"`);
       return pdfResponse.data.pipe(res);
     } catch (cErr) {
-      console.warn("Could not stream Cloudinary PDF directly, attempting fallback:", cErr.message);
+      console.warn("Could not stream Cloudinary image PDF directly, attempting fallback:", cErr.message);
 
       // Fallback: try raw resource type if image type was not found
       try {
@@ -335,12 +339,29 @@ export const viewResourcePdf = async (req, res) => {
         });
         const rawResponse = await axios.get(rawAuthUrl, {
           responseType: "stream",
-          timeout: 10000,
+          timeout: 15000,
         });
         res.setHeader("Content-Type", "application/pdf");
         res.setHeader("Content-Disposition", `inline; filename="${publicId}.pdf"`);
         return rawResponse.data.pipe(res);
       } catch (rawErr) {
+        console.warn("Raw Cloudinary streaming failed, attempting direct stored URL:", rawErr.message);
+
+        // Fallback: Direct fileUrl stored in DB
+        if (resource?.fileUrl) {
+          try {
+            const directResponse = await axios.get(resource.fileUrl, {
+              responseType: "stream",
+              timeout: 15000,
+            });
+            res.setHeader("Content-Type", "application/pdf");
+            res.setHeader("Content-Disposition", `inline; filename="${publicId}.pdf"`);
+            return directResponse.data.pipe(res);
+          } catch (dErr) {
+            console.error("Direct file URL failed:", dErr.message);
+          }
+        }
+
         console.error("All Cloudinary streaming attempts failed:", rawErr.message);
         return res.status(500).send("Unable to load document from storage");
       }

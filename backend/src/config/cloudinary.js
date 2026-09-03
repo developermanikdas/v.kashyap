@@ -7,12 +7,20 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-  secure: true,
-});
+const cloudName = process.env.CLOUDINARY_CLOUD_NAME || "zb2qcsso";
+const apiKey = process.env.CLOUDINARY_API_KEY || "356116773996384";
+const apiSecret = process.env.CLOUDINARY_API_SECRET || "NkapsStLG7UhsA2kp3BjryWx2_s";
+
+if (process.env.CLOUDINARY_URL) {
+  cloudinary.config(true);
+} else {
+  cloudinary.config({
+    cloud_name: cloudName,
+    api_key: apiKey,
+    api_secret: apiSecret,
+    secure: true,
+  });
+}
 
 /**
  * Upload a local file or buffer to Cloudinary
