@@ -84,7 +84,7 @@ export const comprehensiveBotMemories = [
       "article",
       "how he feels"
     ],
-    "answer": "When Manik wondered whether he loved Vanshika in the conventional, dramatic way portrayed in movies, he had genuine doubts about whether he possessed that kind of depth or knew how to express it.\n\nSeeking truth, he researched ancient Indian wisdom (**Tattva**) and found that love is a 7-layered spectrum:\n- **Kāma & Shringāra**: Romantic attraction and aesthetic appreciation\n- **Sneha**: Constant, steady, lubricating care\n- **Maitri**: Unpossessive, unconditional friendship\n- **Karuṇā**: Active compassion and protective empathy\n- **Bhakti & Prema**: Deep reverence and pure selfless oneness\n\nHe realized his devotion is firmly rooted in **Sneha, Maitri, and Karuṇā**—a patient, protective presence asking nothing in return.\n\n📖 Read Manik's complete reflection and research:\n[Indian Scripture Definitions of Love (PDF)](http://localhost:5000/api/v1/resources/Indian_Scripture_Definitions_of_Love/view)",
+    "answer": "When Manik wondered whether he loved Vanshika in the conventional, dramatic way portrayed in movies, he had genuine doubts about whether he possessed that kind of depth or knew how to express it.\n\nSeeking truth, he researched ancient Indian wisdom (**Tattva**) and found that love is a 7-layered spectrum:\n- **Kāma & Shringāra**: Romantic attraction and aesthetic appreciation\n- **Sneha**: Constant, steady, lubricating care\n- **Maitri**: Unpossessive, unconditional friendship\n- **Karuṇā**: Active compassion and protective empathy\n- **Bhakti & Prema**: Deep reverence and pure selfless oneness\n\nHe realized his devotion is firmly rooted in **Sneha, Maitri, and Karuṇā**—a patient, protective presence asking nothing in return.\n\n📖 Read Manik's complete reflection and research:\n[Indian Scripture Definitions of Love (PDF)](/api/v1/resources/Indian_Scripture_Definitions_of_Love/view)",
     "priority": 5,
     "isActive": true
   },
@@ -134,7 +134,7 @@ export const comprehensiveBotMemories = [
       "uncomfortable",
       "pressure"
     ],
-    "answer": "Setting a boundary is not an act of conflict; it is an act of **clarity and self-respect**:\n- When you say *\"I am not comfortable with this,\"* you are not offending anyone—you are protecting your peace.\n- You never owe anyone a debate or justification for needing respect and safety.\n\n📖 Reference Guide: [Women's Safety & Boundary Guide (PDF)](http://localhost:5000/api/v1/resources/womens-safety-and-ocd-guide/view)",
+    "answer": "Setting a boundary is not an act of conflict; it is an act of **clarity and self-respect**:\n- When you say *\"I am not comfortable with this,\"* you are not offending anyone—you are protecting your peace.\n- You never owe anyone a debate or justification for needing respect and safety.\n\n📖 Reference Guide: [Women's Safety & Boundary Guide (PDF)](/api/v1/resources/womens-safety-and-ocd-guide/view)",
     "priority": 5,
     "isActive": true
   },
@@ -152,7 +152,7 @@ export const comprehensiveBotMemories = [
       "danger",
       "stalking"
     ],
-    "answer": "The **DEC Safety Protocol** provides immediate clarity in uncertain situations:\n1. **Detect**: Recognize boundary violations or discomfort early without gaslighting your instincts.\n2. **Evaluate**: Quickly assess exits, nearby populated spaces, and available support.\n3. **Choose**: Take decisive action immediately—assert a firm boundary or transition to a safe location.\n\n📖 Full Protocol Guide: [Women's Safety & Boundary Guide (PDF)](http://localhost:5000/api/v1/resources/womens-safety-and-ocd-guide/view)",
+    "answer": "The **DEC Safety Protocol** provides immediate clarity in uncertain situations:\n1. **Detect**: Recognize boundary violations or discomfort early without gaslighting your instincts.\n2. **Evaluate**: Quickly assess exits, nearby populated spaces, and available support.\n3. **Choose**: Take decisive action immediately—assert a firm boundary or transition to a safe location.\n\n📖 Full Protocol Guide: [Women's Safety & Boundary Guide (PDF)](/api/v1/resources/womens-safety-and-ocd-guide/view)",
     "priority": 4,
     "isActive": true
   },

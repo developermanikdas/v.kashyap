@@ -1243,9 +1243,6 @@ const Admin = () => {
                 {[
                   "What do you know about Vanshika?",
                   "Tell me about Manik and how he feels about me",
-                  "Do you remember the River Ganga call?",
-                  "How to do 4-4-6 calming breath?",
-                  "How do I set boundaries without guilt?",
                 ].map((prompt, pIdx) => (
                   <button
                     key={pIdx}

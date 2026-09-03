@@ -34,10 +34,6 @@ const STORAGE_ACTIVE_SESSION_KEY = "archive_active_chat_session_id";
 const defaultPrompts = [
   "What do you know about me?",
   "Tell me about Manik and his respect for me",
-  "Do you remember the River Ganga call?",
-  "Give me a quick 1-minute calming breath exercise.",
-  "How do I set firm boundaries without feeling guilty?",
-  "What is the DEC decision framework for safety?",
 ];
 
 const INITIAL_GREETING = {
@@ -84,15 +80,15 @@ const resolveWorkingDocUrl = (rawUrl) => {
   if (!rawUrl) return rawUrl;
   let cleanUrl = rawUrl.trim().replace(/[),.;]+$/, "");
 
-  // If it's a Cloudinary link or direct API resource link, route via current backend stream
+  // If it's a known guide link or API resource link, route via current API_BASE stream
   if (cleanUrl.includes("Indian_Scripture_Definitions_of_Love")) {
     return `${API_BASE}/resources/Indian_Scripture_Definitions_of_Love/view`;
   }
   if (cleanUrl.includes("Women_s_Safety") || cleanUrl.includes("womens-safety")) {
     return `${API_BASE}/resources/womens-safety-and-ocd-guide/view`;
   }
-  if (cleanUrl.startsWith("http://localhost:5000/api/v1/resources/")) {
-    const resourcePath = cleanUrl.replace("http://localhost:5000/api/v1", "");
+  if (cleanUrl.includes("/resources/")) {
+    const resourcePath = cleanUrl.substring(cleanUrl.indexOf("/resources/"));
     return `${API_BASE}${resourcePath}`;
   }
   return cleanUrl;

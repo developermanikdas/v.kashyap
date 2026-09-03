@@ -1,0 +1,60 @@
+.lotusContainer {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 0.85rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  outline: none;
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-normal);
+}
+
+.lotusContainer:focus,
+.lotusContainer:focus-visible,
+.lotusContainer:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lotusContainer:hover {
+  transform: scale(1.08);
+}
+
+.lotusContainer:active {
+  transform: scale(0.94);
+}
+
+.webglCanvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  filter: drop-shadow(0 6px 16px rgba(128, 0, 32, 0.1));
+}
+
+@media (max-width: 768px) {
+  .lotusContainer {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 0.65rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lotusContainer {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 0.5rem;
+  }
+}

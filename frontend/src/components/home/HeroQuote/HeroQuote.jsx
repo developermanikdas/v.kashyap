@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { RotateCw } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import api from "../../../api/axios";
+import LotusHeroCanvas from "./LotusHeroCanvas";
 import styles from "./HeroQuote.module.css";
 
 const quotesPool = [
@@ -18,6 +18,7 @@ const HeroQuote = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const [fallbackIndex, setFallbackIndex] = useState(0);
+  const lotusRef = useRef(null);
 
   const fetchNextQuote = async () => {
     try {
@@ -38,12 +39,17 @@ const HeroQuote = () => {
     setIsRotating(true);
     setIsFading(true);
 
+    // Trigger 3D Lotus Bloom animation
+    if (lotusRef.current) {
+      lotusRef.current.triggerBloom();
+    }
+
     const nextText = await fetchNextQuote();
 
     setTimeout(() => {
       setCurrentQuote(nextText);
       setIsFading(false);
-    }, 200);
+    }, 260);
 
     setTimeout(() => {
       setIsRotating(false);
@@ -58,27 +64,20 @@ const HeroQuote = () => {
 
   return (
     <section className={styles.heroSection}>
+      {/* Interactive 3D Lotus Emblem - Click/Tap to bloom and refresh reflection */}
+      <LotusHeroCanvas ref={lotusRef} onLotusClick={handleRefresh} />
+
       <div
         className={styles.quoteContainer}
         style={{
           opacity: isFading ? 0 : 1,
-          transform: isFading ? "translateY(4px)" : "translateY(0)",
+          transform: isFading ? "translateY(6px)" : "translateY(0)",
         }}
       >
         <blockquote className={styles.quote}>
           &ldquo;{currentQuote}&rdquo;
         </blockquote>
       </div>
-
-      <button
-        type="button"
-        className={styles.refreshBtn}
-        onClick={handleRefresh}
-        aria-label="Refresh quote"
-      >
-        <span>Refresh</span>
-        <RotateCw size={14} className={isRotating ? styles.spinning : ""} />
-      </button>
     </section>
   );
 };

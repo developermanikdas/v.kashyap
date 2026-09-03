@@ -376,7 +376,6 @@ ${ragContext ? ragContext : "No specific memory retrieved for this query. Offer 
         process.env.GROQ_MODEL,
         "qwen/qwen3.8-27b",
         "groq/compound-mini",
-        "openai/gpt-oss-20b",
         "qwen/qwen3.6-27b",
       ].filter(Boolean);
 
@@ -395,12 +394,15 @@ ${ragContext ? ragContext : "No specific memory retrieved for this query. Offer 
             Authorization: `Bearer ${apiKey}`,
             "Content-Type": "application/json",
           },
-          timeout: 6500,
+          timeout: 8000,
         }
       );
 
-      const rawContent = response.data?.choices?.[0]?.message?.content?.trim();
+      let rawContent = response.data?.choices?.[0]?.message?.content?.trim();
       if (rawContent) {
+        // Strip any internal reasoning <think> tags if output by reasoning models
+        rawContent = rawContent.replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
+
         // Scrubber passes over LLM output
         const cleanedReply = sanitizeOutputPII(rawContent);
 
