@@ -1,9 +1,10 @@
 import rateLimit from "express-rate-limit";
 
-// Strict rate limiter for authentication endpoints (5 attempts per 15 minutes)
+// Authentication rate limiter (skips successful logins, higher threshold for local dev)
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // Limit each IP to 5 requests per window
+  max: process.env.NODE_ENV === "production" ? 15 : 100, // Limit each IP
+  skipSuccessfulRequests: true, // Successful logins don't penalize user
   standardHeaders: true,
   legacyHeaders: false,
   message: {

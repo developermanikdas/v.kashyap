@@ -27,27 +27,37 @@ app.use(
   })
 );
 
-// Whitelist configuration for Localhost, LAN IPs (e.g. 192.168.x.x), and Production domains
+// Whitelist configuration for Localhost, LAN IPs (e.g. 192.168.x.x), Custom Domain, and Production domains
 const isOriginAllowed = (origin) => {
   if (!origin) return true; // Allow non-browser requests (curl, server-to-server, mobile apps)
 
+  const cleanOrigin = origin.trim().replace(/\/$/, "");
+
   // 1. Localhost and 127.0.0.1 on any port
-  if (/^http:\/\/localhost(:\d+)?$/.test(origin) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(origin)) {
+  if (/^http:\/\/localhost(:\d+)?$/.test(cleanOrigin) || /^http:\/\/127\.0\.0\.1(:\d+)?$/.test(cleanOrigin)) {
     return true;
   }
 
   // 2. Local Area Network (LAN) IPs (e.g. 192.168.x.x, 10.x.x.x, 172.16.x.x) on any port
-  if (/^http:\/\/(192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+)(:\d+)?$/.test(origin)) {
+  if (/^http:\/\/(192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+)(:\d+)?$/.test(cleanOrigin)) {
     return true;
   }
 
-  // 3. Configured production client URL or Vercel/Netlify preview domains
-  if (process.env.CLIENT_URL && origin === process.env.CLIENT_URL) {
+  // 3. Custom Production Domain (e.g. vkashyap99.app, www.vkashyap99.app, *.vkashyap99.app)
+  if (/^https?:\/\/([a-z0-9-]+\.)?vkashyap99\.app$/i.test(cleanOrigin)) {
     return true;
   }
 
-  // 4. Vercel and Netlify app domains
-  if (/^https:\/\/[a-z0-9-]+(\.vercel\.app|\.netlify\.app)$/i.test(origin)) {
+  // 4. Configured production client URL(s) from environment (supports comma-separated list)
+  if (process.env.CLIENT_URL) {
+    const allowedClientUrls = process.env.CLIENT_URL.split(",").map((u) => u.trim().replace(/\/$/, ""));
+    if (allowedClientUrls.includes(cleanOrigin)) {
+      return true;
+    }
+  }
+
+  // 5. Vercel, Netlify, and Render app domains
+  if (/^https:\/\/[a-z0-9-]+(\.vercel\.app|\.netlify\.app|\.onrender\.com)$/i.test(cleanOrigin)) {
     return true;
   }
 
